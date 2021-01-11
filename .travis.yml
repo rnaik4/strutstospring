@@ -4,11 +4,11 @@ services:
 	- docker
 
 before_install:
-	- docker build –t appimg . 
+	- docker build –t springimg . 
 
 script:
-	- docker run –d –p 82:8080 appimg 
+	- docker run –d –p 82:8080 springimg 
 
 after_success:
 	- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
-	- docker push appimg
+	- docker push springimg
