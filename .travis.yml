@@ -1,14 +1,11 @@
 sudo: required
-language: bash
-services:
-  - docker
 
-before_install:
-  - docker build .
-
-script:
-  - docker run –d –p 82:8080 
-
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
-  - docker push springimg
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker build -t springimg .
+      - docker images
+      - docker tag springimg $DOCKER_USERNAME/springimg
+      - docker push $DOCKER_USERNAME/springimg
