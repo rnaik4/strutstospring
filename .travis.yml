@@ -4,8 +4,8 @@ jobs:
   include:
     - stage: build docker image
       script:
-      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker login -u="$DOCKER_ID" -p="$DOCKER_PASSWORD"
       - docker build -t springimg .
       - docker images
-      - docker tag springimg $DOCKER_USERNAME/springimg
-      - docker push $DOCKER_USERNAME/springimg
+      - docker tag springimg $DOCKER_ID/springimg
+      - docker push $DOCKER_ID/springimg
