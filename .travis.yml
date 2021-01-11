@@ -7,7 +7,7 @@ before_install:
   - docker build .
 
 script:
-  - docker run –d –p 82:8080 springimg 
+  - docker run –d –p 82:8080 
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
