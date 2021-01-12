@@ -11,7 +11,7 @@ jobs:
       - docker tag springimg $DOCKER_ID/springimg
       - docker push $DOCKER_ID/springimg
       - pip install --user awscli
-      - export PATH=$PATH:$HOME/.local/bin
+#      - export PATH=$PATH:$HOME/.local/bin
 
       - docker login --username $DOCKER_ID --password $DOCKER_PASSWORD
       - docker build -t springimg .
@@ -20,4 +20,4 @@ jobs:
       - docker push $DOCKER_ID/springimg
 
 after_success:
-- ./ecs_deploy.sh
+- /bin/bash ecs_deploy.sh
