@@ -18,4 +18,6 @@ jobs:
       - docker images
       - docker tag springimg $DOCKER_ID/springimg
       - docker push $DOCKER_ID/springimg
-      - ecs_deploy.sh
+
+after_success:
+- ecs_deploy.sh
