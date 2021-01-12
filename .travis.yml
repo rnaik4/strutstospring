@@ -5,19 +5,12 @@ jobs:
   include:
     - stage: build docker image
       script:
-      - docker login -u="$DOCKER_ID" -p="$DOCKER_PASSWORD"
-      - docker build -t springimg .
-      - docker images
-      - docker tag springimg $DOCKER_ID/springimg
-      - docker push $DOCKER_ID/springimg
       - pip install --user awscli
-#      - export PATH=$PATH:$HOME/.local/bin
-
       - docker login --username $DOCKER_ID --password $DOCKER_PASSWORD
       - docker build -t springimg .
       - docker images
-      - docker tag springimg $DOCKER_ID/springimg
-      - docker push $DOCKER_ID/springimg
+      - docker tag springimg:latest $DOCKER_ID/springimg:latest
+      - docker push $DOCKER_ID/springimg:latest
 
 after_success:
-- /bin/bash ecs_deploy.sh -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimg
+- /bin/bash ecs_deploy.sh -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimg:latest
