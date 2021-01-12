@@ -20,4 +20,4 @@ jobs:
       - docker push $DOCKER_ID/springimg
 
 after_success:
-- ecs_deploy.sh
+- ./ecs_deploy.sh
