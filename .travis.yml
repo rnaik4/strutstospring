@@ -1,11 +1,9 @@
 sudo: required
 
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - docker login -u="$DOCKER_ID" -p="$DOCKER_PASSWORD"
-      - docker build -t springimg .
-      - docker images
-      - docker tag springimg $DOCKER_ID/springimg
-      - docker push $DOCKER_ID/springimg
+services:
+  - docker
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
