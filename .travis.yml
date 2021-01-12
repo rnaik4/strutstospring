@@ -20,4 +20,4 @@ jobs:
       - docker push $DOCKER_ID/springimg
 
 after_success:
-- ecs_deploy.sh -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimg
+- /bin/bash ecs_deploy.sh -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimg
