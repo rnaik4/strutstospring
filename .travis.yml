@@ -23,4 +23,6 @@ jobs:
       - docker images
       - docker tag springimg $DOCKER_ID/springimg
       - docker push $DOCKER_ID/springimg
-      - sudo ecs-deploy.sh -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimg
+
+after_success:
+      - ecs_deploy.sh
