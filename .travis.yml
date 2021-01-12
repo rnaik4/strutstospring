@@ -11,12 +11,12 @@ jobs:
       - docker push $DOCKER_ID/springimg
       - pip install --user awscli
       - export PATH=$PATH:$HOME/.local/bin
-      - sudo add-apt-repository ppa:eugenesan/ppa
-      - sudo apt-get update
-      - sudo apt-get install jq -y 
-      - curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
-      - sudo tee -a /usr/bin/ecs-deploy
-      - sudo chmod +x /usr/bin/ecs-deploeval $(aws ecr get-login --region us-east-1)
+#      - sudo add-apt-repository ppa:eugenesan/ppa
+#      - sudo apt-get update
+#      - sudo apt-get install jq -y 
+#      - curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
+#      - sudo tee -a /usr/bin/ecs-deploy
+#      - sudo chmod +x /usr/bin/ecs-deploeval $(aws ecr get-login --region us-east-1)
 
       - docker login --username $DOCKER_ID --password $DOCKER_PASSWORD
       - docker build -t springimg .
@@ -24,4 +24,4 @@ jobs:
       - docker tag springimg $DOCKER_ID/springimg
       - docker push $DOCKER_ID/springimg
 
-      - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimgy
+      - ./ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $DOCKER_ID/springimgy
