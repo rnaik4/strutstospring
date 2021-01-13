@@ -52,6 +52,7 @@
     </dependency>
   </dependencies>
   <build>
+    <finalName>springbootapp</finalName>
     <plugins>
       <!-- Package as an executable jar/war -->
       <plugin>
