@@ -1,6 +1,6 @@
 FROM java:8-jdk-alpine
 
-COPY ./target/springbootapp.war /usr/app/
+COPY ./target/springbootapp.war /usr/local/tomcat/webapps/
 
 WORKDIR /usr/app
 
