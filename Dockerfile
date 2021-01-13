@@ -1,9 +1,9 @@
 FROM java:8-jdk-alpine
 
-COPY ./target/springbootapp.war /usr/local/tomcat/webapps/
+COPY ./target/SpringBootApp8-1.0.war /usr/local/tomcat/webapps/
 
 WORKDIR /usr/app
 
-RUN sh -c 'touch springbootapp.war'
+RUN sh -c 'touch SpringBootApp8-1.0.war'
 
-ENTRYPOINT ["java","-jar","springbootapp.war"]
+ENTRYPOINT ["java","-jar","SpringBootApp8-1.0.war"]
