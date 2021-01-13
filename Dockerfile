@@ -1,6 +1,9 @@
-FROM tomcat:8.0-alpine
+FROM java:8-jdk-alpine
 
-ADD target/SpringBootApp8-1.0.war /usr/local/tomcat/webapps/
+COPY ./target/springbootapp.war /usr/app/
 
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+WORKDIR /usr/app
+
+RUN sh -c 'touch springbootapp.war'
+
+ENTRYPOINT ["java","-jar","springbootapp.war"]
